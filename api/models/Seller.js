@@ -23,11 +23,56 @@ const sellerSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
+    required: [true, "Please enter your address."],
   },
   phoneNumber: {
     type: Number,
-    required: true,
+    required: [true, "Please enter your mobile number."],
+  },
+  age: {
+    type: Number,
+    required: [true, "Please enter your age."],
+  },
+  gender: {
+    type: String,
+    required: [true, "Please select your gender."],
+    enum: ["Male", "Female", "Other"],
+  },
+  companyName: {
+    type: String,
+    required: [true, "Please enter your company name."],
+  },
+  officeAddress: {
+    type: String,
+    required: [true, "Please enter your office address."],
+  },
+  godownAddress: {
+    type: String,
+    required: [true, "Please enter your godown address."],
+  },
+  state: {
+    type: String,
+    required: [true, "Please enter your state."],
+  },
+  town: {
+    type: String,
+    required: [true, "Please enter your town."],
+  },
+  zipCode: {
+    type: Number,
+    required: [true, "Please enter your pin code."],
+  },
+  aadhaarNo: {
+    type: String,
+    required: [true, "Please enter your Aadhaar number."],
+  },
+  panNo: {
+    type: String,
+    required: [true, "Please enter your PAN number."],
+  },
+  gstNo: {
+    type: String,
+    required: [true, "Please enter your GST number."],
   },
   role: {
     type: String,
@@ -42,10 +87,6 @@ const sellerSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-  },
-  zipCode: {
-    type: Number,
-    required: true,
   },
   withdrawMethod: {
     type: Object,

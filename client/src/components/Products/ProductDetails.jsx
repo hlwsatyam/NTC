@@ -209,12 +209,12 @@ const ProductDetails = ({ data }) => {
               <p className="text-gray-700 mb-2">{data.description}</p>
               <div className="flex items-center gap-4 mb-2">
                 <h4 className="text-2xl font-bold text-orange-500">
-                  ${data.discountPrice}
+                  ₹{data.discountPrice}
                 </h4>
                 {data.originalPrice &&
                   data.originalPrice !== data.discountPrice && (
                     <h3 className="text-lg text-gray-400 line-through">
-                      ${data.originalPrice}
+                      ₹{data.originalPrice}
                     </h3>
                   )}
               </div>
@@ -334,9 +334,101 @@ const ProductDetailsInfo = ({
         </div>
       </div>
       {active === 1 && (
-        <p className="py-4 text-[18px] leading-8 whitespace-pre-line text-gray-700">
-          {data.description}
-        </p>
+        <div className="py-4 text-[18px] leading-8 text-gray-700">
+          {/* Description */}
+          <div className="mb-6">
+            <h4 className="text-xl font-bold text-gray-800 mb-2">Description</h4>
+            <p className="whitespace-pre-line">{data.description}</p>
+          </div>
+
+          {/* Specifications */}
+          {data.specifications && (
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-800 mb-2">Specifications</h4>
+              <p className="whitespace-pre-line">{data.specifications}</p>
+            </div>
+          )}
+
+          {/* Product Info Table */}
+          <div className="mb-6">
+            <h4 className="text-xl font-bold text-gray-800 mb-3">Product Details</h4>
+            <div className="border border-gray-200 rounded-sm overflow-hidden">
+              <table className="w-full text-base">
+                <tbody>
+                  {data.yearMfg && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Year of Manufacturing</td>
+                      <td className="px-4 py-3">{data.yearMfg}</td>
+                    </tr>
+                  )}
+                  {data.hsnCode && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">HSN Code</td>
+                      <td className="px-4 py-3">{data.hsnCode}</td>
+                    </tr>
+                  )}
+                  {data.packing && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Packing</td>
+                      <td className="px-4 py-3">{data.packing}</td>
+                    </tr>
+                  )}
+                  {data.qty && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Qty per Pack</td>
+                      <td className="px-4 py-3">{data.qty}</td>
+                    </tr>
+                  )}
+                  {data.stock !== undefined && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Stock Available</td>
+                      <td className="px-4 py-3">{data.stock} units</td>
+                    </tr>
+                  )}
+                  {data.originalPrice && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">MRP</td>
+                      <td className="px-4 py-3">
+                        <span className="text-gray-400 line-through">₹{data.originalPrice}</span>
+                        {data.discount && <span className="ml-2 text-green-600 font-semibold">({data.discount}% off)</span>}
+                      </td>
+                    </tr>
+                  )}
+                  {data.discountPrice && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Price Each</td>
+                      <td className="px-4 py-3 font-bold text-orange-500">₹{data.discountPrice}</td>
+                    </tr>
+                  )}
+                  {data.gstCategory !== undefined && (
+                    <tr className="border-b border-gray-100">
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">GST Category</td>
+                      <td className="px-4 py-3">{data.gstCategory}%</td>
+                    </tr>
+                  )}
+                  {data.priceIncludingGst && (
+                    <tr>
+                      <td className="px-4 py-3 bg-gray-50 font-semibold text-gray-700 w-1/3">Price Including GST</td>
+                      <td className="px-4 py-3 font-bold text-green-600">₹{data.priceIncludingGst}</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Box Image */}
+          {data.boxImage?.url && (
+            <div className="mb-6">
+              <h4 className="text-xl font-bold text-gray-800 mb-2">Box / Packaging Image</h4>
+              <img
+                src={data.boxImage.url}
+                alt="Box packaging"
+                className="max-w-sm rounded-sm border border-gray-200 shadow-sm"
+              />
+            </div>
+          )}
+        </div>
       )}
       {active === 2 && (
         <div className="w-full min-h-[40vh] flex flex-col items-center py-3 overflow-y-scroll">

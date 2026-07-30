@@ -194,17 +194,51 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                 </h1>
                 <p className="text-gray-700 mb-2">{data.description}</p>
 
+                {/* Key details row */}
+                <div className="flex flex-wrap gap-3 mb-1">
+                  {data.hsnCode && (
+                    <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-sm font-medium">
+                      HSN: {data.hsnCode}
+                    </span>
+                  )}
+                  {data.yearMfg && (
+                    <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-sm font-medium">
+                      Mfg: {data.yearMfg}
+                    </span>
+                  )}
+                  {data.packing && (
+                    <span className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-sm font-medium">
+                      {data.packing}
+                    </span>
+                  )}
+                  {data.qty && (
+                    <span className="text-xs bg-purple-50 text-purple-700 px-2 py-1 rounded-sm font-medium">
+                      Qty/Pack: {data.qty}
+                    </span>
+                  )}
+                </div>
+
                 <div className="flex items-center gap-4 mb-2">
                   <h4 className="text-2xl font-bold text-orange-500">
-                    ${data.discountPrice}
+                    ₹{data.discountPrice}
                   </h4>
                   {data.originalPrice &&
                     data.originalPrice !== data.discountPrice && (
                       <h3 className="text-lg text-gray-400 line-through">
-                        ${data.originalPrice}
+                        ₹{data.originalPrice}
                       </h3>
                     )}
+                  {data.gstCategory !== undefined && (
+                    <span className="text-xs font-semibold px-2 py-1 rounded-sm bg-gray-100 text-gray-600">
+                      +{data.gstCategory}% GST
+                    </span>
+                  )}
                 </div>
+                {data.priceIncludingGst && (
+                  <p className="text-sm text-green-600 font-semibold">
+                    ₹{data.priceIncludingGst} incl. GST
+                  </p>
+                )}
 
                 <div className="flex items-center gap-6 mt-4">
                   <div className="flex items-center border rounded-sm overflow-hidden">

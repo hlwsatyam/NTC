@@ -9,14 +9,24 @@ const SellerDashboardSettings = () => {
   const dispatch = useDispatch();
   const [avatar] = useState();
   const { seller } = useSelector((state) => state.seller);
-  const [name, setName] = useState(seller && seller.name);
-  const [zipCode, setZipcode] = useState(seller && seller.zipCode);
-  const [address, setAddress] = useState(seller && seller.address);
-  const [phoneNumber, setPhoneNumber] = useState(seller && seller.phoneNumber);
-  const [description, setDescription] = useState(
-    seller && seller.description ? seller.description : ""
-  );
+  const [name, setName] = useState(seller?.name || "");
+  const [zipCode, setZipcode] = useState(seller?.zipCode || "");
+  const [address, setAddress] = useState(seller?.address || "");
+  const [phoneNumber, setPhoneNumber] = useState(seller?.phoneNumber || "");
+  const [description, setDescription] = useState(seller?.description || "");
   const [password, setPassword] = useState("");
+
+  // New fields
+  const [age, setAge] = useState(seller?.age || "");
+  const [gender, setGender] = useState(seller?.gender || "");
+  const [companyName, setCompanyName] = useState(seller?.companyName || "");
+  const [officeAddress, setOfficeAddress] = useState(seller?.officeAddress || "");
+  const [godownAddress, setGodownAddress] = useState(seller?.godownAddress || "");
+  const [state, setState] = useState(seller?.state || "");
+  const [town, setTown] = useState(seller?.town || "");
+  const [aadhaarNo, setAadhaarNo] = useState(seller?.aadhaarNo || "");
+  const [panNo, setPanNo] = useState(seller?.panNo || "");
+  const [gstNo, setGstNo] = useState(seller?.gstNo || "");
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -55,12 +65,22 @@ const SellerDashboardSettings = () => {
           zipCode,
           phoneNumber,
           description,
+          age,
+          gender,
+          companyName,
+          officeAddress,
+          godownAddress,
+          state,
+          town,
+          aadhaarNo,
+          panNo,
+          gstNo,
           password,
         },
         { withCredentials: true }
       )
       .then((res) => {
-        toast.success("Seller info updated succesfully.");
+        toast.success("Seller info updated successfully.");
         dispatch(getSeller());
         setPassword("");
       })
@@ -74,7 +94,7 @@ const SellerDashboardSettings = () => {
       <div className="flex justify-center w-full mb-8">
         <div className="relative">
           <img
-            src={avatar ? avatar : `${seller.avatar?.url}`}
+            src={avatar ? avatar : `${seller?.avatar?.url}`}
             className="w-32 h-32 md:w-40 md:h-40 lg:w-[150px] lg:h-[150px] rounded-full object-cover border-4 border-gray-400 shadow-[0_0_20px_rgba(0,0,0,0.05)]"
             alt="Seller Profile"
           />
@@ -93,92 +113,257 @@ const SellerDashboardSettings = () => {
       </div>
 
       <div className="w-full flex flex-col items-center">
-        <div className="w-full max-w-2xl bg-white py-6 md:py-8 px-4 md:px-6 lg:px-10 shadow-[0_0_20px_rgba(0,0,0,0.05)] rounded-sm">
-          <form onSubmit={updateHandler} className="space-y-4 md:space-y-6">
-            <div className="w-full flex flex-col lg:flex-row gap-4">
-              <div className="w-full">
-                <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Shop Name
-                </label>
-                <input
-                  type="text"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-              <div className="w-full">
-                <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Shop Description
-                </label>
-                <input
-                  type="text"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
+        <div className="w-full max-w-4xl bg-white py-6 md:py-8 px-4 md:px-6 lg:px-10 shadow-[0_0_20px_rgba(0,0,0,0.05)] rounded-sm">
+          <form onSubmit={updateHandler} className="space-y-6">
+            {/* ===== Personal Information ===== */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">
+                Personal Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Full Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Shop Description
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Describe your shop"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Mobile Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Age <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    min="18"
+                    max="120"
+                    value={age}
+                    onChange={(e) => setAge(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Gender <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base bg-white"
+                    required
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                  >
+                    <option value="" disabled>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
               </div>
             </div>
 
-            <div className="w-full flex flex-col lg:flex-row gap-4">
-              <div className="w-full">
-                <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Shop Address
-                </label>
-                <input
-                  type="text"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
-                  required
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </div>
-              <div className="w-full">
-                <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Shop Phone Number
-                </label>
-                <input
-                  type="number"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
-                  required
-                  value={phoneNumber}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                />
+            {/* ===== Address Details ===== */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">
+                Address Details
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Residential Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Pin Code <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={zipCode}
+                    onChange={(e) => setZipcode(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    State <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Town / City <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={town}
+                    onChange={(e) => setTown(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="w-full flex flex-col lg:flex-row gap-4">
-              <div className="w-full">
-                <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Shop Zip Code
-                </label>
-                <input
-                  type="number"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
-                  required
-                  value={zipCode}
-                  onChange={(e) => setZipcode(e.target.value)}
-                />
+            {/* ===== Business Information ===== */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">
+                Business Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Company Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={companyName}
+                    onChange={(e) => setCompanyName(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Office Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={officeAddress}
+                    onChange={(e) => setOfficeAddress(e.target.value)}
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Godown / Warehouse Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={godownAddress}
+                    onChange={(e) => setGodownAddress(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="w-full">
+            </div>
+
+            {/* ===== Identity & Tax Information ===== */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">
+                Identity & Tax Information
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    Aadhaar Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={aadhaarNo}
+                    onChange={(e) => setAadhaarNo(e.target.value)}
+                    maxLength={12}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    PAN Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={panNo}
+                    onChange={(e) => setPanNo(e.target.value)}
+                    maxLength={10}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
+                    GST Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
+                    required
+                    value={gstNo}
+                    onChange={(e) => setGstNo(e.target.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* ===== Confirm Password ===== */}
+            <div>
+              <h3 className="text-lg font-bold text-gray-700 border-b border-gray-200 pb-2 mb-4">
+                Confirm Changes
+              </h3>
+              <div className="w-full md:w-1/2">
                 <label className="block text-sm md:text-base font-semibold text-gray-800 mb-1">
-                  Enter your password
+                  Enter your password to confirm <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="password"
-                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"
+                  className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
                 />
               </div>
             </div>
+
             <button
               type="submit"
-              className="w-full py-2 md:py-3 bg-orange-500 hover:bg-gray-800 text-white cursor-pointer rounded-sm font-semibold tracking-wide transition mt-4 flex items-center justify-center"
+              className="w-full py-3 md:py-3 bg-orange-500 hover:bg-gray-800 text-white cursor-pointer rounded-sm font-semibold tracking-wide transition mt-2 flex items-center justify-center text-lg"
             >
-              Update
+              Update Profile
             </button>
           </form>
         </div>

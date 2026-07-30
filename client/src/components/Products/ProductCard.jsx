@@ -136,12 +136,12 @@ const ProductCard = ({ data, isEvent }) => {
         <div className="flex items-center justify-between mt-auto pt-2">
           <div className="flex items-end gap-2">
             <h5 className="text-md font-bold text-orange-500">
-              ${data.discountPrice}
+              ₹{data.discountPrice}
             </h5>
             {data.originalPrice &&
               data.originalPrice !== data.discountPrice && (
                 <h4 className="text-xs text-gray-400 line-through">
-                  ${data.originalPrice}
+                  ₹{data.originalPrice}
                 </h4>
               )}
           </div>

@@ -14,7 +14,7 @@ const createActivationToken = (seller) => {
 
 exports.registerSeller = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, email, password, avatar, address, phoneNumber, zipCode } =
+    const { name, email, password, avatar, address, phoneNumber, zipCode, age, gender, companyName, officeAddress, godownAddress, state, town, aadhaarNo, panNo, gstNo } =
       req.body;
 
     const sellerEmail = await Seller.findOne({ email });
@@ -48,6 +48,16 @@ exports.registerSeller = catchAsyncErrors(async (req, res, next) => {
       address,
       phoneNumber,
       zipCode,
+      age,
+      gender,
+      companyName,
+      officeAddress,
+      godownAddress,
+      state,
+      town,
+      aadhaarNo,
+      panNo,
+      gstNo,
     };
 
     const activationToken = createActivationToken(seller);
@@ -85,7 +95,7 @@ exports.activateSeller = catchAsyncErrors(async (req, res, next) => {
       return next(new errorHandler("Invalid activation token.", 400));
     }
 
-    const { name, email, password, avatar, zipCode, address, phoneNumber } =
+    const { name, email, password, avatar, zipCode, address, phoneNumber, age, gender, companyName, officeAddress, godownAddress, state, town, aadhaarNo, panNo, gstNo } =
       seller;
 
     const sellerEmail = await Seller.findOne({ email });
@@ -103,6 +113,16 @@ exports.activateSeller = catchAsyncErrors(async (req, res, next) => {
       zipCode,
       address,
       phoneNumber,
+      age,
+      gender,
+      companyName,
+      officeAddress,
+      godownAddress,
+      state,
+      town,
+      aadhaarNo,
+      panNo,
+      gstNo,
     });
 
     sendSellerToken(newSeller, 201, res);
@@ -220,7 +240,7 @@ exports.updateSellerAvatar = catchAsyncErrors(async (req, res, next) => {
 
 exports.updateSellerInfo = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { name, description, address, phoneNumber, zipCode, password } =
+    const { name, description, address, phoneNumber, zipCode, age, gender, companyName, officeAddress, godownAddress, state, town, aadhaarNo, panNo, gstNo, password } =
       req.body;
 
     const seller = await Seller.findById(req.seller._id).select("+password");
@@ -236,6 +256,16 @@ exports.updateSellerInfo = catchAsyncErrors(async (req, res, next) => {
     seller.address = address;
     seller.phoneNumber = phoneNumber;
     seller.zipCode = zipCode;
+    seller.age = age;
+    seller.gender = gender;
+    seller.companyName = companyName;
+    seller.officeAddress = officeAddress;
+    seller.godownAddress = godownAddress;
+    seller.state = state;
+    seller.town = town;
+    seller.aadhaarNo = aadhaarNo;
+    seller.panNo = panNo;
+    seller.gstNo = gstNo;
     await seller.save();
     res.status(201).json({
       success: true,

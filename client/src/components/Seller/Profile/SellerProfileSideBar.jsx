@@ -65,12 +65,64 @@ const SellerProfileSideBar = ({ isOwner, sellerData }) => {
       </div>
       <div className="mt-6 flex flex-col gap-3">
         <div>
-          <h5 className="font-semibold text-gray-800">Address</h5>
+          <h5 className="font-semibold text-gray-800">Full Name</h5>
+          <h4 className="text-gray-500">{sellerData?.name || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Email</h5>
+          <h4 className="text-gray-500">{sellerData?.email || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Mobile Number</h5>
+          <h4 className="text-gray-500">{sellerData?.phoneNumber || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Age</h5>
+          <h4 className="text-gray-500">{sellerData?.age || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Gender</h5>
+          <h4 className="text-gray-500">{sellerData?.gender || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Company Name</h5>
+          <h4 className="text-gray-500">{sellerData?.companyName || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Residential Address</h5>
           <h4 className="text-gray-500">{sellerData?.address || "N/A"}</h4>
         </div>
         <div>
-          <h5 className="font-semibold text-gray-800">Phone Number</h5>
-          <h4 className="text-gray-500">{sellerData?.phoneNumber || "N/A"}</h4>
+          <h5 className="font-semibold text-gray-800">Office Address</h5>
+          <h4 className="text-gray-500">{sellerData?.officeAddress || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Godown Address</h5>
+          <h4 className="text-gray-500">{sellerData?.godownAddress || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">State</h5>
+          <h4 className="text-gray-500">{sellerData?.state || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Town / City</h5>
+          <h4 className="text-gray-500">{sellerData?.town || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Pin Code</h5>
+          <h4 className="text-gray-500">{sellerData?.zipCode || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">Aadhaar Number</h5>
+          <h4 className="text-gray-500">{sellerData?.aadhaarNo ? `XXXX${sellerData.aadhaarNo.slice(-4)}` : "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">PAN Number</h5>
+          <h4 className="text-gray-500">{sellerData?.panNo || "N/A"}</h4>
+        </div>
+        <div>
+          <h5 className="font-semibold text-gray-800">GST Number</h5>
+          <h4 className="text-gray-500">{sellerData?.gstNo || "N/A"}</h4>
         </div>
         <div>
           <h5 className="font-semibold text-gray-800">Total Products</h5>

@@ -30,8 +30,25 @@ exports.addProduct = catchAsyncErrors(async (req, res, next) => {
         });
       }
 
+      // Upload box image if provided
+      let boxImageObj = null;
+      if (req.body.boxImage) {
+        const boxImgResult = await cloudinary.v2.uploader.upload(req.body.boxImage, {
+          folder: "products/box",
+        });
+        boxImageObj = {
+          public_id: boxImgResult.public_id,
+          url: boxImgResult.secure_url,
+        };
+      }
+
       const productData = req.body;
       productData.images = imagesLinks;
+      if (boxImageObj) {
+        productData.boxImage = boxImageObj;
+      } else {
+        delete productData.boxImage;
+      }
       productData.seller = seller;
 
       const product = await Product.create(productData);

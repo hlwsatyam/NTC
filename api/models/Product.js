@@ -9,6 +9,15 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your product description."],
   },
+  specifications: {
+    type: String,
+  },
+  yearMfg: {
+    type: Number,
+  },
+  hsnCode: {
+    type: String,
+  },
   category: {
     type: String,
     required: [true, "Please enter your product category."],
@@ -23,9 +32,25 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Please enter your product price."],
   },
+  discount: {
+    type: Number,
+  },
+  gstCategory: {
+    type: Number,
+    default: 18,
+  },
+  priceIncludingGst: {
+    type: Number,
+  },
   stock: {
     type: Number,
     required: [true, "Please enter your product stock."],
+  },
+  qty: {
+    type: Number,
+  },
+  packing: {
+    type: String,
   },
   images: [
     {
@@ -39,6 +64,14 @@ const productSchema = new mongoose.Schema({
       },
     },
   ],
+  boxImage: {
+    public_id: {
+      type: String,
+    },
+    url: {
+      type: String,
+    },
+  },
   reviews: [
     {
       user: {
