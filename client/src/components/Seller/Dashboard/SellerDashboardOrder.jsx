@@ -111,7 +111,7 @@ const SellerDashboardOrder = () => {
                   {item.name}
                 </h5>
                 <p className="text-gray-600">
-                  US${item.discountPrice} × {item.qty}
+                  ₹{item.discountPrice} × {item.qty}
                 </p>
               </div>
             </div>
@@ -121,7 +121,7 @@ const SellerDashboardOrder = () => {
         <div className="text-right pt-4 mt-4 border-t">
           <h5 className="text-lg md:text-xl font-semibold text-gray-800">
             Total Price:{" "}
-            <span className="text-orange-600">US${data?.totalPrice}</span>
+            <span className="text-orange-600">₹{data?.totalPrice}</span>
           </h5>
         </div>
 

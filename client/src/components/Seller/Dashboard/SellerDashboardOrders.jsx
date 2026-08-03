@@ -73,7 +73,7 @@ const SellerDashboardOrders = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-800">Total</p>
                   <p className="text-sm text-gray-600 font-semibold">
-                    US$ {order.totalPrice}
+                    ₹{order.totalPrice}
                   </p>
                 </div>
               </div>
@@ -141,7 +141,7 @@ const SellerDashboardOrders = () => {
                     {order.cart.length}
                   </td>
                   <td className="px-4 lg:px-6 py-3 text-sm font-semibold text-gray-900">
-                    US$ {order.totalPrice}
+                    ₹{order.totalPrice}
                   </td>
                   <td className="px-4 lg:px-6 py-3">
                     <Link to={`/seller/order/${order._id}`}>

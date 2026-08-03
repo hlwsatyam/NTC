@@ -15,7 +15,7 @@ const Footer = () => {
         <div>
           <h2 className="text-lg font-semibold mb-4 tracking-wide">ABOUT US</h2>
           <p className="text-gray-300 mb-6">
-            Welcome to Buyno, your trusted online marketplace for a wide variety
+            Welcome to NTC, your trusted online marketplace for a wide variety
             of quality products. We are committed to providing excellent
             customer service, secure shopping, and fast delivery.
           </p>
@@ -119,15 +119,15 @@ const Footer = () => {
       <div className="border-t border-gray-700 py-6 bg-[#23262a]">
         <div className="w-[95%] sm:w-11/12 mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <span className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Buyno. Made with
+            © {new Date().getFullYear()} NTC. Made with
             <span className="text-orange-500"> ♥ </span>by{" "}
             <a
-              href="https://ahadali.me"
+              href="https://techmintlab.com"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold underline hover:text-orange-500 transition"
             >
-              Ahad Ali
+              Satyam
             </a>
             .
           </span>

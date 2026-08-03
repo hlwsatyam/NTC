@@ -51,7 +51,7 @@ const AdminDashboardHero = () => {
             </div>
           </div>
           <p className="text-xl sm:text-2xl font-bold text-gray-900 pl-1">
-            ${adminBalance || "0.00"}
+            ₹{adminBalance || "0.00"}
           </p>
         </div>
         <div className="shadow-[0_0_20px_rgba(0,0,0,0.05)] rounded-sm p-4 sm:p-5 space-y-4">
@@ -153,7 +153,7 @@ const AdminDashboardHero = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-800">Total</p>
                   <p className="text-sm text-gray-600 font-semibold">
-                    US$ {order.totalPrice}
+                    ₹{order.totalPrice}
                   </p>
                 </div>
               </div>
@@ -244,7 +244,7 @@ const AdminDashboardHero = () => {
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900 max-w-xs truncate">
                     {order.cart.reduce((acc, item) => acc + item.qty, 0)}
                   </td>
-                  <td className="px-4 py-2 text-sm">US$ {order.totalPrice}</td>
+                  <td className="px-4 py-2 text-sm">₹{order.totalPrice}</td>
                   <td className="px-4 py-2">{order.createdAt.slice(0, 10)}</td>
                 </tr>
               ))

@@ -70,9 +70,9 @@ const SellerDashboardEvents = () => {
                     <p className="text-sm font-medium text-gray-800">Price</p>
                     <p className="text-sm text-gray-600">
                       {event.discountPrice
-                        ? `$${event.discountPrice}`
+                        ? `₹${event.discountPrice}`
                         : event.originalPrice
-                        ? `$${event.originalPrice}`
+                        ? `₹${event.originalPrice}`
                         : "-"}
                     </p>
                   </div>
@@ -153,9 +153,9 @@ const SellerDashboardEvents = () => {
                   </td>
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900">
                     {event.discountPrice
-                      ? `$${event.discountPrice}`
+                      ? `₹${event.discountPrice}`
                       : event.originalPrice
-                      ? `$${event.originalPrice}`
+                      ? `₹${event.originalPrice}`
                       : "-"}
                   </td>
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900">

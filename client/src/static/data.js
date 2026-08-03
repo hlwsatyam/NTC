@@ -154,7 +154,7 @@ export const brandingData = [
   {
     id: 1,
     title: "Free Shipping",
-    Description: "From all orders over 100$",
+    Description: "From all orders over ₹4,999",
     icon: (
       <svg
         width="36"
@@ -466,7 +466,7 @@ export const FaqData = [
   {
     question: "What payment methods do you accept?",
     answer:
-      "We accept Visa, Mastercard, PayPal payment method also we have cash on delivery system.",
+      "We accept Razorpay (UPI, Cards, Net Banking & Wallets) and also have a cash on delivery system.",
   },
 ];
 
@@ -482,7 +482,7 @@ export const heroSlides = [
       <>
         Discover unbeatable deals on electronics, fashion, and more.
         <br />
-        Enjoy secure payments, fast delivery, and 24/7 support at Buyno.
+        Enjoy secure payments, fast delivery, and 24/7 support at NTC.
       </>
     ),
     btn: "Start Shopping",

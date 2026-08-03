@@ -124,7 +124,7 @@ const TrackOrder = () => {
                   </div>
                   {order.totalPrice && (
                     <p className="text-lg font-semibold text-gray-900 mt-1">
-                      ${order.totalPrice}
+                      ₹{order.totalPrice}
                     </p>
                   )}
                 </div>
@@ -245,7 +245,7 @@ const TrackOrder = () => {
                         </span>
                       </div>
                       <span className="font-medium text-gray-900">
-                        ${item.price}
+                        ₹{item.price}
                       </span>
                     </div>
                   ))}
@@ -254,7 +254,7 @@ const TrackOrder = () => {
                   <div className="flex justify-between items-center">
                     <span className="font-semibold text-gray-900">Total</span>
                     <span className="font-bold text-lg text-gray-900">
-                      ${order.totalPrice}
+                      ₹{order.totalPrice}
                     </span>
                   </div>
                 </div>

@@ -162,6 +162,7 @@ const ShippingInfo = ({
   setZipCode,
 }) => {
   const [selectedAddress, setSelectedAddress] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState(user?.phoneNumber || "");
 
   const handleAddressSelect = (item, idx) => {
     setSelectedAddress(idx);
@@ -210,11 +211,12 @@ const ShippingInfo = ({
               Phone Number
             </label>
             <input
-              type="number"
+              type="tel"
               required
-              value={user && user.phoneNumber}
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="Enter your phone number"
               className="w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-base"
-              readOnly
             />
           </div>
           <div className="flex-1">
@@ -339,25 +341,25 @@ const CartData = ({
       <div className="flex justify-between mb-3">
         <span className="text-base font-medium text-gray-700">Subtotal:</span>
         <span className="text-lg font-bold text-gray-800">
-          ${subTotalPrice}
+          ₹{subTotalPrice}
         </span>
       </div>
       <div className="flex justify-between mb-3">
         <span className="text-base font-medium text-gray-700">Shipping:</span>
         <span className="text-lg font-bold text-gray-800">
-          ${shipping.toFixed(2)}
+          ₹{shipping.toFixed(2)}
         </span>
       </div>
       <div className="flex justify-between border-b pb-3 mb-3">
         <span className="text-base font-medium text-gray-700">Discount:</span>
         <span className="text-lg font-bold text-green-600">
-          {discountPercentenge ? "$" + discountPercentenge.toString() : "$0"}
+          {discountPercentenge ? "₹" + discountPercentenge.toString() : "₹0"}
         </span>
       </div>
       <div className="flex justify-between items-center pt-2 mb-6">
         <span className="text-lg font-semibold text-gray-800">Total:</span>
         <span className="text-2xl font-bold text-orange-500">
-          ${totalPrice}
+          ₹{totalPrice}
         </span>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">

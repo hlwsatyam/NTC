@@ -20,7 +20,7 @@ exports.requestWithdraw = catchAsyncErrors(async (req, res, next) => {
         name: req.seller.name,
         message: `Hello ${req.seller.name},
 
-          We have received your withdrawal request for $${amount}. Your request is currently being processed and will be completed within 3 to 7 business days.
+          We have received your withdrawal request for ₹${amount}. Your request is currently being processed and will be completed within 3 to 7 business days.
 
           Thank you for your patience.`,
       });
@@ -90,7 +90,7 @@ exports.updateWithdrawRequestStatusByAdmin = catchAsyncErrors(
           name: seller.name,
           message: `Hello ${seller.name},
 
-          We are pleased to inform you that your withdrawal request of $${withdraw.amount} has been processed and is on its way. The delivery time depends on your bank's policies and typically takes between 3 to 7 business days.
+          We are pleased to inform you that your withdrawal request of ₹${withdraw.amount} has been processed and is on its way. The delivery time depends on your bank's policies and typically takes between 3 to 7 business days.
 
           Thank you for choosing our platform.`,
         });

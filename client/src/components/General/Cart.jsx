@@ -87,7 +87,7 @@ const Cart = ({ setOpenCart }) => {
               <Link to="/cart/checkout">
                 <div className="h-[45px] flex items-center justify-center w-full bg-orange-500 hover:bg-gray-800 transition rounded-[5px] shadow-lg">
                   <h1 className="text-white text-[18px] font-semibold">
-                    Checkout Now (USD${totalPrice})
+                    Checkout Now (₹{totalPrice})
                   </h1>
                 </div>
               </Link>
@@ -147,7 +147,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
         </div>
         <div className="flex items-center gap-2 mt-2">
           <span className="text-orange-500 font-bold text-base">
-            ${data.discountPrice}
+            ₹{data.discountPrice}
           </span>
           <span className="text-gray-400 text-sm">x {value}</span>
         </div>
@@ -167,7 +167,7 @@ const CartSingle = ({ data, quantityChangeHandler, removeFromCartHandler }) => {
           </button>
         </div>
         <span className="text-gray-800 font-bold text-md mt-4 block sm:mt-2">
-          US${totalPrice}
+          ₹{totalPrice}
         </span>
       </div>
     </div>

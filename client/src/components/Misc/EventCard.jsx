@@ -67,11 +67,11 @@ const EventCard = ({ active, data }) => {
               <div className="flex gap-2 items-end">
                 {data.originalPrice && (
                   <span className="text-sm text-gray-400 line-through">
-                    ${data.originalPrice}
+                    ₹{data.originalPrice}
                   </span>
                 )}
                 <span className="text-xl font-bold text-orange-500">
-                  ${data.discountPrice}
+                  ₹{data.discountPrice}
                 </span>
               </div>
               <span className="text-sm text-green-600 font-semibold">

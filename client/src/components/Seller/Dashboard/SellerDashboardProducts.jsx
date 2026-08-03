@@ -73,9 +73,9 @@ const SellerDashboardProducts = () => {
                     <p className="text-sm font-medium text-gray-800">Price</p>
                     <p className="text-sm text-gray-600">
                       {product.discountPrice
-                        ? `$${product.discountPrice}`
+                        ? `₹${product.discountPrice}`
                         : product.originalPrice
-                        ? `$${product.originalPrice}`
+                        ? `₹${product.originalPrice}`
                         : "-"}
                     </p>
                   </div>
@@ -162,9 +162,9 @@ const SellerDashboardProducts = () => {
                   </td>
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900">
                     {product.discountPrice
-                      ? `$${product.discountPrice}`
+                      ? `₹${product.discountPrice}`
                       : product.originalPrice
-                      ? `$${product.originalPrice}`
+                      ? `₹${product.originalPrice}`
                       : "-"}
                   </td>
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900">

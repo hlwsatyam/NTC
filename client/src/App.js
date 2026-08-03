@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
 import { getUser } from "./redux/actions/user";
 import { getSeller } from "./redux/actions/user";
 import { getAllProducts } from "./redux/actions/product";
@@ -65,20 +63,9 @@ import {
 import "./App.css";
 import store from "./redux/store";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 
 const App = () => {
-  const [stripeApikey, setStripeApiKey] = useState("");
   const setBackendError = () => {};
-
-  async function getStripeApikey() {
-    try {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/payments/key`
-      );
-      setStripeApiKey(data.stripeApikey);
-    } catch (error) {}
-  }
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -88,7 +75,6 @@ const App = () => {
           store.dispatch(getSeller()),
           store.dispatch(getAllProducts()),
           store.dispatch(getAllEvents()),
-          getStripeApikey(),
         ]);
       } catch (error) {
         setBackendError(true);
@@ -98,20 +84,16 @@ const App = () => {
     fetchInitialData();
   }, []);
 
-  const PaymentPageWithStripe = () => (
-    <Elements stripe={loadStripe(stripeApikey)}>
-      <UserProtectedRoute>
-        <UserPaymentPage />
-      </UserProtectedRoute>
-    </Elements>
-  );
-
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/order/payment"
-          element={stripeApikey ? <PaymentPageWithStripe /> : null}
+          element={
+            <UserProtectedRoute>
+              <UserPaymentPage />
+            </UserProtectedRoute>
+          }
         />
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductListPage />} />

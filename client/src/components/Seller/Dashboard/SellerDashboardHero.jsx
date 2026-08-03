@@ -25,7 +25,7 @@ const SellerDashboardHero = () => {
       row.push({
         id: item._id,
         itemsQty: item.cart.reduce((acc, item) => acc + item.qty, 0),
-        total: "US$ " + item.totalPrice,
+        total: "₹ " + item.totalPrice,
         status: item.status,
       });
     });
@@ -47,7 +47,7 @@ const SellerDashboardHero = () => {
             </div>
           </div>
           <p className="text-xl sm:text-2xl font-bold text-gray-900 pl-1">
-            ${availableBalance}
+            ₹{availableBalance}
           </p>
           <Link to="/seller/dashboard-withdraw-money">
             <p className="text-orange-500 hover:text-gray-800 font-medium text-xs sm:text-sm pl-1">
@@ -146,7 +146,7 @@ const SellerDashboardHero = () => {
                 <div>
                   <p className="text-sm font-medium text-gray-800">Total</p>
                   <p className="text-sm text-gray-600 font-semibold">
-                    US$ {order.totalPrice}
+                    ₹{order.totalPrice}
                   </p>
                 </div>
               </div>
@@ -209,7 +209,7 @@ const SellerDashboardHero = () => {
                   <td className="px-4 lg:px-6 py-3 text-sm text-gray-900 max-w-xs truncate">
                     {order.cart.reduce((acc, item) => acc + item.qty, 0)}
                   </td>
-                  <td className="px-4 py-2 text-sm">US$ {order.totalPrice}</td>
+                  <td className="px-4 py-2 text-sm">₹{order.totalPrice}</td>
                   <td className="px-4 py-2">
                     <Link to={`/seller/order/${order._id}`}>
                       <button className="bg-orange-500 hover:bg-gray-800 text-white rounded-sm p-2 transition">

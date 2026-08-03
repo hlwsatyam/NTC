@@ -100,7 +100,7 @@ const AdminDashboardWithdraw = () => {
                   <div>
                     <p className="text-sm font-medium text-gray-800">Amount</p>
                     <p className="text-sm text-gray-600 font-semibold">
-                      US$ {withdraw.amount}
+                      ₹{withdraw.amount}
                     </p>
                   </div>
                   <div>
@@ -229,7 +229,7 @@ const AdminDashboardWithdraw = () => {
                     {withdraw.seller?._id || "-"}
                   </td>
                   <td className="px-4 py-3 text-sm text-gray-900">
-                    US$ {withdraw.amount}
+                    ₹{withdraw.amount}
                   </td>
                   <td className="px-4 py-3 text-sm text-center align-middle">
                     <span

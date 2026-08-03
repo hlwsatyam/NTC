@@ -18,6 +18,7 @@ import Wishlist from "../General/Wishlist";
 
 const Header = () => {
   const searchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
   const categoriesRef = useRef(null);
   const [active, setActive] = useState(false);
   const [dropDown, setDropDown] = useState(false);
@@ -44,9 +45,11 @@ const Header = () => {
     setSearchData(filteredProducts);
   };
 
-  window.addEventListener("scroll", () => {
-    setActive(window.scrollY > 70);
-  });
+  useEffect(() => {
+    const handleScroll = () => setActive(window.scrollY > 70);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -71,7 +74,12 @@ const Header = () => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
+      const insideDesktop =
+        searchRef.current && searchRef.current.contains(event.target);
+      const insideMobile =
+        mobileSearchRef.current && mobileSearchRef.current.contains(event.target);
+
+      if (!insideDesktop && !insideMobile) {
         setSearchData(null);
       }
     }
@@ -111,7 +119,7 @@ const Header = () => {
               </button>
 
               {searchData && searchData.length > 0 && (
-                <div className="absolute left-0 right-0 mt-2 bg-white shadow-lg rounded z-10 max-h-60 overflow-y-auto">
+                <div className="absolute left-0 right-0 mt-2 bg-white shadow-lg rounded z-30 max-h-60 overflow-y-auto">
                   {searchData.map((i) => (
                     <Link
                       to={`/product/${i._id}`}
@@ -259,7 +267,7 @@ const Header = () => {
             </button>
           </div>
           <div className="p-4 space-y-4 h-[calc(100vh-64px)] overflow-y-auto">
-            <div className="relative" ref={searchRef}>
+            <div className="relative" ref={mobileSearchRef}>
               <input
                 type="text"
                 placeholder="Search for products..."
@@ -272,7 +280,7 @@ const Header = () => {
               </button>
 
               {searchData && searchData.length > 0 && (
-                <div className="absolute left-0 right-0 mt-2 bg-white shadow-lg rounded-sm z-10 max-h-60 overflow-y-auto">
+                <div className="absolute left-0 right-0 mt-2 bg-white shadow-lg rounded-sm z-30 max-h-60 overflow-y-auto">
                   {searchData.map((i) => (
                     <Link
                       to={`/product/${i._id}`}
@@ -282,8 +290,8 @@ const Header = () => {
                     >
                       <img
                         src={
-                          i.image_Url && i.image_Url[0]?.url
-                            ? i.image_Url[0].url
+                          i.images && i.images[0]?.url
+                            ? i.images[0].url
                             : productPlaceholderImg
                         }
                         alt={i.name}

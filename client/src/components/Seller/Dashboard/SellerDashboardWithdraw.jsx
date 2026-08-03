@@ -81,7 +81,7 @@ const SellerDashboardWithdraw = () => {
   const handleWithdraw = async () => {
     const amount = Number(withdrawAmount);
     if (amount < 50) {
-      return toast.error("Minimum withdrawal amount is $50!");
+      return toast.error("Minimum withdrawal amount is ₹500!");
     }
     if (amount > Number(availableBalance)) {
       return toast.error("Invalid amount!");
@@ -111,7 +111,7 @@ const SellerDashboardWithdraw = () => {
           Available Balance
         </h2>
         <p className="text-3xl font-bold text-gray-900 text-center">
-          ${availableBalance}
+          ₹{availableBalance}
         </p>
         <button
           onClick={() => {
@@ -203,7 +203,7 @@ const SellerDashboardWithdraw = () => {
                 <div className="mt-4">
                   <input
                     type="number"
-                    placeholder="Amount ($)"
+                    placeholder="Amount (₹)"
                     value={withdrawAmount}
                     onChange={(e) => setWithdrawAmount(e.target.value)}
                     className="block w-full px-4 py-2 border border-gray-300 rounded-sm shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 text-lg"

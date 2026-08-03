@@ -25,6 +25,12 @@ const orderSchema = new mongoose.Schema({
     id: {
       type: String,
     },
+    orderId: {
+      type: String,
+    },
+    signature: {
+      type: String,
+    },
     status: {
       type: String,
     },
